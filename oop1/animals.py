@@ -1,13 +1,27 @@
 # Object Oriented Programming in Python
 
-class Cat:
-
-    def __init__(self, name, age): # Instantiate the object right when it's created
+class Pet:
+    def __init__(self, name, age):  # Instantiate the object right when it's created
         self.name = name
         self.age = age
-        print(name)
 
-    def meow(self):
+    def show(self):
+        print(f"I am {self.name} and I am {self.age} years old")
+
+    def speak(self):
+        print("Don't know what to say")
+
+
+class Cat(Pet):
+
+    def __init__(self, name, age, color):
+        super().__init__(name, age)  # Inherit the attributes from Pet class
+        self.color = color
+
+    def show(self):
+        print(f"I am {self.name} and I am {self.age} years old and I am {self.color}")
+
+    def speak(self):
         print("Meow!")
 
     def get_name(self):
@@ -20,13 +34,9 @@ class Cat:
         self.age = age
 
 
-class Dog:
+class Dog(Pet):
 
-    def __init__(self, name, age): # Instantiate the object right when it's created
-        self.name = name
-        self.age = age
-
-    def bark(self):
+    def speak(self):
         print("Vau!")
 
     def eat(self, belly):
@@ -42,10 +52,27 @@ class Dog:
         self.name = name
 
 
-# Instantiate these classes
-c = Cat("Tom", 10)
+class Frog(Pet):
+    pass
+
+
+# Instantiate
+
+p = Pet("Tom", 5)
+p.show()
+p.speak()
+
+c = Cat("Tom", 10, "brown")
+c.show()
+
 d = Dog("George", 4)
+d.show()
+
 d2 = Dog("John", 6)
+d2.show()
+
+f = Frog("Prince", 2)
+f.speak()
 
 print(d.name, d.age)
 print(d2.get_name(), d.get_age())
@@ -55,10 +82,9 @@ d.name = "Nielsen"
 
 print(d.name, d.age)
 
-c.meow()
-d.bark()
+c.speak()
+d.speak()
 
 print(d.eat(0))
 
 print(type(c), type(d))
-
